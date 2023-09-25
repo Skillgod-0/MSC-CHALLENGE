@@ -1,0 +1,31 @@
+class Solution:
+    def reverse(self, x: int) -> int:
+        a=0
+        if x<0:
+            x=-x
+            a+=1           
+        string=str(x) 
+        reversed=string[::-1]
+        neg=1
+        for i in range(len(string)):
+            if reversed[neg-1:neg]=='-':
+                neg=2
+                continue
+                
+            if reversed[neg-1:neg]==0:
+                reversclassed=reversed[1:]
+            else:
+                break
+        if a==1:
+            if -int(reversed)>-2^31:
+                return -int(reversed)
+            else:
+                return 0
+
+        else:
+            if int(reversed)>(2^31-1):
+                     
+          
+               return int(reversed)
+            else:
+               return 0
