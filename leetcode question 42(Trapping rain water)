@@ -1,0 +1,45 @@
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        def rain_check(element,index):
+            
+            wall=0
+            wall_index=1
+            second_big_index=1
+            second_big=0
+            
+            if element!=0:
+                
+                a=True
+                while a==True:
+                        for i in height[index:]:
+                             if i>=element:
+                                    print(element)
+                                    wall=i
+                                    break   
+                             else:
+                                wall_index+=1
+                        if wall!=0:
+                             for i in height[index:]:
+                                    if i>second_big:
+                                        second_big=i
+                                        second_big_index+=1
+                        a=False
+            return wall,wall_index,second_big,second_big_index
+        index=0
+        rain=0
+        for element in height:
+            if element!=0:
+                rain_check(element,index)
+                if wall!=0:
+                    rain+=(element*(wall_index-1))
+                    index=wall_index
+                    for i in height[index:wall_index]:
+                        rain-=i
+                elif second_big !=0:
+                    rain+=(element*(second_big_index-1))
+                    index=second_big_index
+                    for i in height[index:second_big_index]:
+                        rain-=i
+            else:
+                index+=1
+        return rain
