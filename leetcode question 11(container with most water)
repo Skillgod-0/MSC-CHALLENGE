@@ -1,0 +1,31 @@
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        left_pointer=0
+        right_pointer=len(height)-1
+        max_water=0
+        new=height
+        def amount_check():
+            nonlocal right_pointer
+            nonlocal left_pointer
+            nonlocal max_water
+            
+            if height[left_pointer]<height[right_pointer]:
+                amount=(height[left_pointer]*(right_pointer-left_pointer))
+                
+                left_pointer+=1
+                
+            elif height[left_pointer]>=height[right_pointer]:
+                amount=(height[right_pointer]*(right_pointer-left_pointer))
+                right_pointer-=1
+                
+            if amount>max_water:
+                max_water=amount
+    
+        while new!=[]:
+            
+            amount_check()
+            new=height[left_pointer:right_pointer+1]
+            if max_water>(max(height)*(right_pointer-left_pointer)):
+                break
+            
+        return max_water
