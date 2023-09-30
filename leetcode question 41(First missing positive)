@@ -1,0 +1,30 @@
+class Solution:
+    def firstMissingPositive(self, nums: List[int]) -> int:
+        nums.sort()
+        print(nums)
+        a=True
+        for i in range(len(nums)-1):
+            if nums[i]+1== nums[i+1]:
+                continue
+            elif nums[i]==nums[i+1]:
+                continue
+            elif nums[i]<0:
+                continue
+            else:
+                if 1 not in nums or nums[len(nums)-1]<0 or nums[0]>1:
+                    return 1
+                    a=False
+                else:
+                    if nums[i]+1!=0 :
+                        num=nums[i]+1
+                        return num
+                        a=False
+                    else:
+                        num=nums[i]+2 
+        if a==True:
+            if 1 not in nums or nums[len(nums)-1]<0 or nums[0]>1:
+                    return 1
+                   
+            else:
+                    num=nums[len(nums)-1]+1
+                    return num
