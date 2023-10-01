@@ -1,0 +1,25 @@
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        self._digits=digits
+        list=[]
+        dict={2:"abc", 3:"def", 4:"ghi", 5:"jkl", 6:"mno", 7:"pqrs", 8:"tuv", 9:"wxyz"}
+        if len(digits)>0: 
+            k=dict.get(int(digits[0:1])) 
+            for i in k:
+                if len(digits)>=2:
+                    secondstr=dict.get(int(digits[1:2]))
+                    for j in secondstr:
+                        if len(digits)>=3:
+                            thirdstr=dict.get(int(digits[2:3]))
+                            for l in thirdstr:
+                                if len(digits)==4:
+                                    fourstr=dict.get(int(digits[3:4]))
+                                    for m in fourstr:
+                                        list.append(i+j+l+m)
+                                else:
+                                    list.append(i+j+l)
+                        else:
+                            list.append(i+j) 
+                else:
+                    list.append(i)
+        return list
